@@ -19,6 +19,7 @@ import org.arpit.java2blog.service.CountryService;
 public class CountryController {
 
 	CountryService countryService = new CountryService();
+	//system.out.println("test");
 
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
