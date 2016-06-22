@@ -15,51 +15,48 @@ import javax.ws.rs.core.MediaType;
 import org.arpit.java2blog.bean.Country;
 import org.arpit.java2blog.service.CountryService;
 
-
 @Path("/countries")
 public class CountryController {
+
+	CountryService countryService = new CountryService();
+
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.TEXT_PLAIN)
+	public String addCountry(Country country) {
+		countryService.addCountry(country);
+
+		return "Country had been successfully added";
+	}
+
+	@PUT
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.TEXT_PLAIN)
+	public String updateCountry(Country country) {
+		countryService.updateCountry(country);
+		return "Country had been successfully updated";
+
+	}
+
+	@DELETE
+	@Path("/{id}")
+	@Produces(MediaType.TEXT_PLAIN)
+	public String deleteCountry(@PathParam("id") int id) {
+		countryService.deleteCountry(id);
+		return "Country had been successfully deleted";
+
+	}
+	@GET
+	@Path("/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Country getCountry(@PathParam("id") int id) {
+		return countryService.getCountry(id);
+	}
 	
-	CountryService countryService=new CountryService();
-	
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-	public List<Country> getCountries()
-	{
-		System.out.println("test");
-		List<Country> listOfCountries=countryService.getAllCountries();
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Country> getAllCountries() {
+		List<Country> listOfCountries = countryService.getAllCountries();
 		return listOfCountries;
 	}
-
-   
-    @GET
-    @Path("/{id}")
-    @Produces(MediaType.APPLICATION_JSON)
-	public Country getCountry(@PathParam("id") int id)
-	{
-		return countryService.getCountry(id);
-		
-	}
-    @POST
-    @Consumes(MediaType.APPLICATION_JSON)
-	public boolean addCountry(Country country)
-	{
-		return countryService.addCountry(country);
-	}
-
-    @PUT
-    @Consumes(MediaType.APPLICATION_JSON)
-	public boolean updateCountry(Country country)
-	{
-		return countryService.updateCountry(country);
-		
-	}
-	
-    @DELETE
-    @Path("/{id}")
-	public boolean deleteCountry(@PathParam("id") int id)
-	{
-		 return countryService.deleteCountry(id);
-		
-	}
-	
 }

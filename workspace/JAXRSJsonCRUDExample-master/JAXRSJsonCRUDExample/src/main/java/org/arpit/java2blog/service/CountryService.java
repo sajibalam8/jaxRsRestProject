@@ -19,16 +19,13 @@ public class CountryService {
 		super();
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<Country> getAllCountries()
 	{
-		return CountryDao.getAllCountries();
+		return  CountryDao.getallCountries();
 	}
 
-	public Country getCountry(int id)
-	{
-		
-		return CountryDao.getCountry(id);
-	}
+	
 	
 	public boolean addCountry(Country country)
 	{
@@ -43,6 +40,14 @@ public class CountryService {
 	public  boolean deleteCountry(int id)
 	{
 		return CountryDao.deleteCountry(id);
+	}
+	
+	
+	
+	public Country getCountry(int id)
+	{
+		
+		return CountryDao.getCountry(id);
 	}
 
 	public static HashMap<Integer, Country> getCountryIdMap() {

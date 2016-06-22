@@ -8,12 +8,12 @@ import javax.persistence.Table;
 
 @Entity
 public class Country{
-	@Column
+	@Id
 	int id;
 	@Column
-	long population;
-	@Column
 	String countryName;	
+	@Column
+	long population;
 	
 	public Country() {
 		super();
